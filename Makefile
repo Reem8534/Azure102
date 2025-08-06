@@ -9,6 +9,6 @@ test:
 	. venv/bin/activate && python -m pytest -vv
 
 lint:
-	. venv/bin/activate && pylint --disable=R,C,W1203 app.py
+	. venv/bin/activate && pylint --disable=R,C,W1203 ./app.py
 
 all: install lint test
