@@ -1,14 +1,12 @@
-setup:
-	python3 -m venv venv
-
 install:
-	. venv/bin/activate && pip install --upgrade pip && \
-	pip install -r requirements.txt
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 test:
-	. venv/bin/activate && python -m pytest -vv
+	python -m pytest -vv test_hello.py
+
 
 lint:
-	. venv/bin/activate && pylint --disable=R,C,W1203 ./app.py
+	pylint --disable=R,C hello.py
 
 all: install lint test
