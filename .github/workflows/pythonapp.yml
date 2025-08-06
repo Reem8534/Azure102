@@ -19,6 +19,9 @@ jobs:
       with:
         python-version: '3.10.18'
 
+    - name: Setup virtual environment
+      run: make setup
+
     - name: Install dependencies
       run: make install
 
