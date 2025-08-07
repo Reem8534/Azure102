@@ -11,9 +11,9 @@ install:
 lint:
 	~/.azure102-env/bin/pylint --disable=R,C,W1203,W0702 app.py
 
-# Run pytest tests
 test:
-	~/.azure102-env/bin/pytest tests/test_app.py
+	#python -m pytest -vv --cov=myrepolib tests/*.py
+	#python -m pytest --nbval notebook.ipynb
 
-# Run install, lint, and test in sequence
+
 all: install lint test
