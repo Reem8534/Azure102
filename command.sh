@@ -7,7 +7,7 @@ python -m venv ~/.azure102-env
 source ~/.azure102-env/bin/activate
 
 # 3. Deploy the app to Azure App Service
-az webapp up -n azureapp -g Azuredevops --runtime "PYTHON|3.10"
+az webapp up -n azureapp-reem95 -g Azuredevops --runtime "PYTHON|3.10" --location westeurope
 
 # 4. Stream logs to check app output
-az webapp log tail -n azureapp -g Azuredevops
+az webapp log tail -n azureapp-reem95 -g Azuredevops
