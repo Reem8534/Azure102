@@ -1,16 +1,19 @@
+# Create virtual environment (run once manually)
 setup:
 	python3 -m venv ~/.azure102-env
 
+# Install dependencies, upgrading pip first
 install:
-	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+	~/.azure102-env/bin/pip install --upgrade pip
+	~/.azure102-env/bin/pip install -r requirements.txt
 
+# Run pylint with some warnings disabled
 lint:
-	pylint --disable=R,C,W1203,W0702 app.py
+	~/.azure102-env/bin/pylint --disable=R,C,W1203,W0702 app.py
 
+# Run pytest tests
 test:
-	pytest tests/test_app.py
+	~/.azure102-env/bin/pytest tests/test_app.py
 
+# Run install, lint, and test in sequence
 all: install lint test
-
-
