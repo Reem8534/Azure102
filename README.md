@@ -64,6 +64,7 @@ jobs:
 A prerequisite for having a successfull CI workflow in GitHub Actions is a 'Makefile' and a 'requirements.txt'. In this project, I will only use pylint for code testing, not pytest. In the requirements file, you need to state the python libraries that are needed to get the Flask web app running. With this in place, a new push to the GitHub repo will automatically trigger the CI workflow in GitHub Actions (testing the app.py file). A pylint score below 10 will result in a failed CI build. That's the sign to refactor your code according to the pylint standards.
 
 <img width="953" height="703" alt="Screenshot 2025-08-07 023208" src="https://github.com/user-attachments/assets/8bbd3424-69f5-49bf-8609-f5325c1c561e" />
+<img width="1224" height="630" alt="Screenshot 2025-08-07 011029" src="https://github.com/user-attachments/assets/ca0e67cb-a9c3-4a89-90c7-8ff368a5af01" />
 
 
 
@@ -76,6 +77,8 @@ ssh-keygen -t rsa <email>
 ````
 git clone git@github.com:Reem8534/Azure102.git
 ````
+<img width="878" height="246" alt="Screenshot 2025-08-07 032652" src="https://github.com/user-attachments/assets/b5b1a419-e548-4a0e-bf85-22fc85c74a2a" />
+
 3. CD into your project directory and create the Python virtual environment via the Makefile.
 ```
 make setup
@@ -88,31 +91,38 @@ source ~/.udacity-devops/bin/activate
 ```
 make all
 ```
+<img width="884" height="627" alt="Screenshot 2025-08-07 041709" src="https://github.com/user-attachments/assets/759512f5-2ba4-46d7-9ebc-190d4c780a8d" />
+output of install 
 
 6. Start Flask web app
 ```
 python app.py
 ```
+
+<img width="763" height="251" alt="Screenshot 2025-08-08 010839" src="https://github.com/user-attachments/assets/1001c928-3b1b-4d38-b22a-b52a23fc240c" />
+
+
 7. Open second Azure Cloud Shell terminal and test the app by making a prediction
 ```
 ./make_prediction.sh
 ```
+<img width="356" height="162" alt="Screenshot 2025-08-08 022552" src="https://github.com/user-attachments/assets/8b5a9372-f3ff-43b3-9379-39f4a1e66035" />
 
-Successfull output:
-![cloud-shell-prediction](./screenshots/cloud-shell_prediction.png)
 
 ### Deploy the Flask Web App to Azure App Service
 1. Create an Azure App Service in your Azure Cloud Shell environment
 ```
-az webapp up -n udacity-flask-web-app -g udacity-rg
+az webapp up -n <web name> -g <resource group>
 ```
-Once, this step is successfully done, you should see the Azure App Service in your resource group (Status: running).
+Once, this step is successfully done, you should see the Azure App Service in your resource group.
 
-![flask-web-app](./screenshots/flask-web-app.png)
+<img width="324" height="68" alt="Screenshot 2025-08-08 022706" src="https://github.com/user-attachments/assets/22487464-229b-4696-b255-94804c19b3d4" />
+
 
 2. Create a new project in Azure DevOps
 3. Create a new service connection in Azure DevOps (you can find it under project settings). The Azure Resource Manager comes in handy for that. Choose Service principal (automatic) if asked and establish a connection to your subscription and resource group.
-4. Go to Azure DevOps Pipelines and create one by connecting it to your GitHub repo. Once, you can configure your pipeline, choose 'Python to Linux Web App on Azure'. This will generate the appropriate YML file for the Flask web app.\
+   
+5. Go to Azure DevOps Pipelines and create one by connecting it to your GitHub repo. Once, you can configure your pipeline, choose 'Python to Linux Web App on Azure'. This will generate the appropriate YML file for the Flask web app.\
 Once, this step is successfully done, you have deployed the Flask Web App.
 
 ![pipeline](./screenshots/pipeline.png)
@@ -121,17 +131,14 @@ Once, this step is successfully done, you have deployed the Flask Web App.
 ```
 ./make_predict_azure_app.sh 
 ```
+<img width="165" height="60" alt="Screenshot 2025-08-08 022859" src="https://github.com/user-attachments/assets/1677c282-ec38-43c2-a04f-73da7e6e7723" />
 
-The output should look like this:
-![make-prediction](./screenshots/make_prediction.png)
 
 6. Logs can be found here:
 ```
-az webapp log tail -n udacity-flask-web-app -g udacity-rg
+az webapp log tail -n <web name> -g <resource group>
 ```
 
-The output should look like this:
-![logging](./screenshots/logging.png)
 
 ### Locust
 Locust is an open source load-testing tool written in Python. It lets you write tests against your web application which mimic your user's behavior, and then run the tests at scale to help find bottlenecks or other performance issues.
@@ -158,4 +165,4 @@ Once your start locust, two tabs will open:
 In the latter one, you can enter the total number of users, the spawn rate and the host (in my case: localhost). The screenshot shows the result of the swarming (the result of the load test).
 
 ## Enhancements
-One of the enhancements you can do is setting up the whole CI/CD workflow in Azure DevOps Repo & Azure DevOps Pipelines alone, leaving out GitHub and GitHub Actions completely. Personally, I found it a bit confusing doing the CI part in GitHub (Actions) and the CD part in Azure DevOps (Pipelines).
+A valuable improvement would be to streamline the entire CI/CD process using only Azure DevOps—by leveraging Azure Repos for source control and Azure Pipelines for both CI and CD. This approach avoids the complexity of splitting responsibilities between GitHub (for CI via Actions) and Azure DevOps (for CD), making the workflow more cohesive and easier to manage.
