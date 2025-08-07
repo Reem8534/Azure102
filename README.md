@@ -125,7 +125,8 @@ Once, this step is successfully done, you should see the Azure App Service in yo
 5. Go to Azure DevOps Pipelines and create one by connecting it to your GitHub repo. Once, you can configure your pipeline, choose 'Python to Linux Web App on Azure'. This will generate the appropriate YML file for the Flask web app.\
 Once, this step is successfully done, you have deployed the Flask Web App.
 
-![pipeline](./screenshots/pipeline.png)
+<img width="699" height="137" alt="Screenshot 2025-08-08 022820" src="https://github.com/user-attachments/assets/9af0c275-63ae-45f3-a313-a9f0024e7e70" />
+
 
 5. Test the Flask Web App
 ```
