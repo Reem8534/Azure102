@@ -1,12 +1,31 @@
-# Building a CI/CD Pipeline in Azure
 
-* [Overview](#overview)
-* [Instructions](#instructions)
 
 ## Overview
-This project is part of the Udacity Cloud DevOps using Microsoft Azure Nanodegree Program.
+In this project, I created a full CI/CD pipeline for a Flask-based machine learning application using:
 
-The first part of this project can be found in the following [GitHub Repo](https://github.com/czofficial/Udacity-Cloud-DevOps-using-Microsoft-Azure-Nanodegree-Program/tree/master/C2-AgileDevelopmentwithAzure).
+GitHub Actions for Continuous Integration (CI)
+
+Azure Pipelines for Continuous Delivery (CD)
+
+Azure App Service for hosting the app
+
+The project includes:
+
+Automated linting, testing, and packaging
+
+Deployment to Azure on every code change
+
+A Makefile and Bash scripts for reproducible workflow
+
+
+### Architecture CI/CD Workflow:
+
+Developer pushes code to GitHub.
+
+GitHub Actions runs make all (install → lint → test).
+
+If CI passes, Azure Pipelines builds and deploys the app to Azure App Service.
+
 
 ## Instructions
 ### Create GitHub Actions Workflow
@@ -44,17 +63,18 @@ jobs:
 
 A prerequisite for having a successfull CI workflow in GitHub Actions is a 'Makefile' and a 'requirements.txt'. In this project, I will only use pylint for code testing, not pytest. In the requirements file, you need to state the python libraries that are needed to get the Flask web app running. With this in place, a new push to the GitHub repo will automatically trigger the CI workflow in GitHub Actions (testing the app.py file). A pylint score below 10 will result in a failed CI build. That's the sign to refactor your code according to the pylint standards.
 
-There's also a GitHub Action badge showing the current status of the project:
-[![Python application test with Github Actions](https://github.com/czofficial/Building-a-CICD-Pipeline-in-Azure/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/czofficial/Building-a-CICD-Pipeline-in-Azure/actions/workflows/python-app.yml)
+<img width="953" height="703" alt="Screenshot 2025-08-07 023208" src="https://github.com/user-attachments/assets/8bbd3424-69f5-49bf-8609-f5325c1c561e" />
+
+
 
 ### Deploy the Flask Web App in Azure Cloud Shell
 1. Launch an Azure Cloud Shell Environment, create ssh keys and upload them into your GitHub account.
 ````
-ssh-keygen -t rsa
+ssh-keygen -t rsa <email>
 ````
 2. Clone the GitHub project into your Azure Cloud Shell environment.
 ````
-git clone git@github.com:czofficial/Building-a-CICD-Pipeline-in-Azure.git
+git clone git@github.com:Reem8534/Azure102.git
 ````
 3. CD into your project directory and create the Python virtual environment via the Makefile.
 ```
@@ -68,6 +88,7 @@ source ~/.udacity-devops/bin/activate
 ```
 make all
 ```
+
 6. Start Flask web app
 ```
 python app.py
