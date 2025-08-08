@@ -26,6 +26,11 @@ GitHub Actions runs make all (install → lint → test).
 
 If CI passes, Azure Pipelines builds and deploys the app to Azure App Service.
 
+## planning
+the board: https://trello.com/b/6Gux9cPM/udacity
+the file: 
+https://docs.google.com/spreadsheets/d/1pOmuhYMsWYRNB8kvIdr9X0hpKFXW3Ah6EVeq03g6uTw/edit?usp=sharing
+
 
 ## Instructions
 ### Create GitHub Actions Workflow
